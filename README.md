@@ -1,2 +1,3 @@
-#Computer Graphics - OpenGL
-This repository is about learning OpenGL
+# Computer Graphics - OpenGL
+
+ This repository is about learning OpenGL
