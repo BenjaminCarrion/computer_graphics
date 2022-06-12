@@ -13,7 +13,6 @@ the circles by the way you need it.
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <math.h>
-#define PI 3,14
 
 void reshape(GLint w, GLint h){
     glViewport(0,0,w,h);
