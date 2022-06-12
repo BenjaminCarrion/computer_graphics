@@ -4,6 +4,10 @@ Name: Eduardo Carrion
 This code is the homework for creatings circles
 to compile this code you need to link libraries
 use g++ circles.cpp -lGL -lGLU -lglut -o circles
+
+Circles have been created by using points and lines.
+Use circleByPointsDisp or circleByLinesDisp to diplay
+the circles by the way you need it.
  ******************************************************/
 #include <iostream>
 #include <GL/glew.h>
