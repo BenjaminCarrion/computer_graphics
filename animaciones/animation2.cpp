@@ -2,6 +2,11 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
+GLfloat angle =0;
+GLfloat angle1 =0;
+GLfloat angle2 =0;
+int tiempo= 10;
+
 void reshape(GLsizei w, GLsizei h){
     if(h==0){
         h=1;
@@ -18,11 +23,10 @@ void init(){
     glLoadIdentity();
     gluPerspective(60, 1, 1, 20);
     glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(0, 0, 10, 0, 0, 0, 0, 1, 0);
 }
 
-void display(){
-
-}
 
 void cubo(){
     glBegin(GL_QUADS);
@@ -65,6 +69,43 @@ void cubo(){
     glEnd();
 }
 
+void timer(int value){
+    glutPostRedisplay();
+    glutTimerFunc(tiempo, timer, 0);
+}
+
+void display(){
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glPushMatrix();
+    glRotatef(angle, 0, 1, 1);
+    cubo();
+    glPopMatrix();
+    
+
+    glPushMatrix();
+    glTranslatef(-4, 1, 0);
+    glScalef(0.5, 0.5, 0.5);
+    glRotatef(angle1, 1, 1, 1);
+    cubo();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(4, -1, 0);
+    glScalef(0.8, 0.8, 0.8);
+    glRotatef(angle2, 1, 1, 0);
+    cubo();
+    glPopMatrix();
+
+
+    glFlush();
+    angle+=0.2;
+    angle1+=0.3;
+    angle2+=0.5;
+    glutSwapBuffers();
+
+}
+
 int main(int argc, char** argv){
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB);
@@ -77,6 +118,7 @@ int main(int argc, char** argv){
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
 
+    glutTimerFunc(0, timer, 0);
     glutMainLoop();
     return 0;
 }
